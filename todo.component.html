@@ -1,0 +1,69 @@
+<div class="todo-container">
+  <h2 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">To-Do List</h2>
+  
+
+</div>
+
+<div class="input-container">
+  <form (ngSubmit)="addTodo()">
+    <div class="group">
+      <input type="text" [(ngModel)]="newTodo" placeholder="Enter a new task" name="newTask">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Task</label>
+    </div>
+    <div class="group">
+      <select [(ngModel)]="selectedDay" name="selectedDay">
+        <option style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" value="Monday">Monday</option>
+        <option style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" value="Tuesday">Tuesday</option>
+        <option style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" value="Wednesday">Wednesday</option>
+        <option style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" value="Thursday">Thursday</option>
+        <option style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" value="Friday">Friday</option>
+        <option style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" value="Saturday">Saturday</option>
+        <option style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" value="Sunday">Sunday</option>
+      </select>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"></label>
+    </div>
+    <div class="group">
+      <input type="time" [(ngModel)]="selectedTime" name="selectedTime">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Times</label>
+    </div>
+    <button style="box-shadow:0 0 10px rgba(0, 0, 0, 0.1); color: rgb(255, 255, 255); font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; background-color: rgb(174, 124, 255); border: none; padding: 6px; width: 70px; border-radius: 30px; cursor: pointer;" type="submit">Add</button>
+  </form>
+</div>
+
+<div class="card-container">
+  <div *ngFor="let todo of activeTodos" class="card">
+    <div class="card-header">
+      <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">{{ todo.task }}</p>
+      <div class="time-info">
+        <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><strong>Day:</strong> {{ todo.day }}</p>
+        <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><strong>Time:</strong> {{ todo.time }}</p>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button (click)="completeTask(todo)" style="background-color: #32CD32; color: #fff; border: none; padding: 8px 16px; border-radius: 30px; cursor: pointer;">Done</button>
+      <button (click)="removeTask(todo)" style="background-color: #f44336; color: #fff; border: none; padding: 8px 16px; border-radius: 30px; cursor: pointer;">Delete</button>
+    </div>
+  </div>
+</div>
+
+<h3 class="todo-container" style="margin-top: 40px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Done</h3>
+<div class="done-container">
+  <div *ngFor="let todo of completedTodos" class="done-card">
+    <div class="done-card-header">
+      <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">{{ todo.task }}</p>
+      <div class="time-info">
+        <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><strong>Day:</strong> {{ todo.day }}</p>
+        <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><strong>Time:</strong> {{ todo.time }}</p>
+      </div>
+    </div>
+    <div class="done-card-footer">
+      <button (click)="removeTask(todo)" style="background-color: #f44336; color: #fff; border: none; padding: 8px 16px; border-radius: 30px; cursor: pointer;">Delete</button>
+    </div>
+  </div>
+</div>
